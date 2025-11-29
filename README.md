@@ -86,4 +86,18 @@ finitos (FSM) y tareas concurrentes manejadas con FreeRTOS.
 
 https://wokwi.com/projects/442535339004692481
 
-  
+## Comunicación MQTT y Aplicación Android
+
+El sistema fue ampliado para incluir comunicación MQTT con una aplicación Android, permitiendo:
+-   Monitoreo en tiempo real del estado de la máquina (estado actual, errores, colores detectados).
+-   Modificación remota de la velocidad de la cinta transportadora desde el dispositivo móvil.
+-   Para integrar estas funcionalidades se incorporó un módulo de comunicación basado en WiFi + MQTT, utilizando tópicos dedicados.
+
+## Flujo de comunicación
+
+-   El ESP32 se conecta a WiFi y al broker MQTT.
+-   Subscripción a los tópicos de control definidos.
+-   El ESP32 publica continuamente:
+        -   Estado actual de la FSM (color detectado, detenciones, errores)
+-   El ESP32 recibe comandos de control para variar la velocidad de la cinta y para detenerla.   
+-   La app actualiza la UI en tiempo real.
